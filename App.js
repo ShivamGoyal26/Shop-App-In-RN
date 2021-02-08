@@ -1,22 +1,23 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+
+import productsReducer from './store/reducers/Products';
+import ShopNavigator from './navigation/ShopNavigator';
+
+const rootReducer = combineReducers({
+  products: productsReducer
+});
+
+const store = createStore(rootReducer);
 
 const App = props => {
-  return(
-    <View style={styles.screen}>
-      <Text>This is the Main Screen</Text>
-    </View>
+  return (
+    <Provider store={store}>
+      <ShopNavigator />
+    </Provider>
   )
 }
-
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
-})
 
 
 export default App;
