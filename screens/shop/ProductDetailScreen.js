@@ -11,6 +11,7 @@ import {
 import { State } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
 import * as cartActions from '../../store/actions/Cart';
+import Toast from 'react-native-simple-toast';
 
 import Colors from '../../constants/Colors';
 
@@ -33,11 +34,12 @@ const ProductDetailScreen = props => {
                     borderRadius: 10,
                 }} onPress={() => {
                     dispatch(cartActions.addToCart(selectedProduct));
+                    Toast.show('Add To Cart Successful!');
                 }}>
                     <Text style={{ color: Colors.primary, fontSize: 20 }}>Add To Cart</Text>
                 </TouchableOpacity>
             </View>
-            
+
             <Text style={styles.price} >Price: ${selectedProduct.price.toFixed(2)}</Text>
             <Text style={styles.description} >{selectedProduct.description}</Text>
         </ScrollView>
