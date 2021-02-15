@@ -14,6 +14,7 @@ import HeaderButton from '../components/UI/HeaderButton';
 import CartScreen from '../screens/shop/CartScreen';
 import OrdersScreen from '../screens/shop/OrdersScreen';
 import UserProductsScreen from '../screens/user/UserProductsScreen';
+import EditProductScreen from '../screens/user/EditProductScreen';
 
 
 const Stack = createStackNavigator();
@@ -38,6 +39,26 @@ const userNavigator = () => {
                         </View>
                     ),
                     title: "Your Products",
+                    headerTintColor: 'white',
+                    headerStyle: {
+                        backgroundColor: Colors.primary,
+                    }
+                })}
+            />
+            <userStack.Screen
+                name="EditProductScreen"
+                component={EditProductScreen}
+                options={({ navigation }) => ({
+                    // headerLeft: () => (
+                    //     <View style={{ marginLeft: 10 }}>
+                    //         <TouchableOpacity onPress={() => {
+                    //             navigation.toggleDrawer();
+                    //         }}>
+                    //             <Ionicons name="menu-outline" size={23} color='white' />
+                    //         </TouchableOpacity>
+                    //     </View>
+                    // ),
+                    title: "Edit Product",
                     headerTintColor: 'white',
                     headerStyle: {
                         backgroundColor: Colors.primary,
@@ -162,7 +183,7 @@ const MainDrawer = () => {
                         activeTintColor: Colors.primary,
                     }}
                 />
-                 <Drawer.Screen
+                <Drawer.Screen
                     name="Admin"
                     component={userNavigator}
                     options={{

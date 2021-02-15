@@ -23,7 +23,8 @@ const UserProductsScreen = props => {
             onSelect={() => { }}
         >
             <TouchableOpacity onPress={() => {
-                selectItemHandler(itemData.item.id, itemData.item.title,);
+                // selectItemHandler(itemData.item.id, itemData.item.title,);
+                props.navigation.navigate("EditProductScreen");
             }}>
                 <Ionicons
                     name='ios-pencil'
