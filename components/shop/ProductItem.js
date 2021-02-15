@@ -1,7 +1,5 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Colors from '../../constants/Colors';
 
 const ProductItem = props => {
     let TocuhableCmp = TouchableOpacity;
@@ -13,7 +11,7 @@ const ProductItem = props => {
 
         <View style={styles.product}>
             <View style={styles.touchable}>
-                <TocuhableCmp onPress={props.onViewDetail} useForeground>
+                <TocuhableCmp onPress={props.onSelect} useForeground>
                     <View>
                         <View style={styles.imageContainer}>
                             <Image style={styles.image} source={{ uri: props.image }} />
@@ -23,20 +21,7 @@ const ProductItem = props => {
                             <Text style={styles.price}>${props.price.toFixed(2)}</Text>
                         </View>
                         <View style={styles.actions}>
-                            <TouchableOpacity onPress={props.onViewDetail}>
-                                <Ionicons
-                                    name='information-circle-outline'
-                                    color={Colors.primary}
-                                    size={28}
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={props.onAddToCart}>
-                                <Ionicons
-                                    name='cart-outline'
-                                    color={Colors.primary}
-                                    size={28}
-                                />
-                            </TouchableOpacity>
+                            {props.children}
                         </View>
                     </View>
                 </TocuhableCmp>

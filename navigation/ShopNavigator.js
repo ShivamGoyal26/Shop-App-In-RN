@@ -13,11 +13,40 @@ import ProductDetailScreen from '../screens/shop/ProductDetailScreen';
 import HeaderButton from '../components/UI/HeaderButton';
 import CartScreen from '../screens/shop/CartScreen';
 import OrdersScreen from '../screens/shop/OrdersScreen';
+import UserProductsScreen from '../screens/user/UserProductsScreen';
 
 
 const Stack = createStackNavigator();
 const ordersStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const userStack = createStackNavigator();
+
+const userNavigator = () => {
+    return (
+        <ordersStack.Navigator>
+            <userStack.Screen
+                name="UserProducts"
+                component={UserProductsScreen}
+                options={({ navigation }) => ({
+                    headerLeft: () => (
+                        <View style={{ marginLeft: 10 }}>
+                            <TouchableOpacity onPress={() => {
+                                navigation.toggleDrawer();
+                            }}>
+                                <Ionicons name="menu-outline" size={23} color='white' />
+                            </TouchableOpacity>
+                        </View>
+                    ),
+                    title: "Your Products",
+                    headerTintColor: 'white',
+                    headerStyle: {
+                        backgroundColor: Colors.primary,
+                    }
+                })}
+            />
+        </ordersStack.Navigator>
+    );
+}
 
 const ordersNavigator = () => {
     return (
@@ -121,13 +150,21 @@ const MainDrawer = () => {
                     name="Shop"
                     component={ProdcutsNavigator}
                     options={{
-                        drawerIcon: () => <Icon name="shopping-store" size={20} color={Colors.primary} />,
+                        drawerIcon: () => <Ionicons name="md-basket-outline" size={20} color={Colors.primary} />,
                         activeTintColor: Colors.primary,
                     }}
                 />
                 <Drawer.Screen
                     name="Orders"
                     component={ordersNavigator}
+                    options={{
+                        drawerIcon: () => <Ionicons name="filter-sharp" size={20} color={Colors.primary} />,
+                        activeTintColor: Colors.primary,
+                    }}
+                />
+                 <Drawer.Screen
+                    name="Admin"
+                    component={userNavigator}
                     options={{
                         drawerIcon: () => <Ionicons name="today-outline" size={20} color={Colors.primary} />,
                         activeTintColor: Colors.primary,
