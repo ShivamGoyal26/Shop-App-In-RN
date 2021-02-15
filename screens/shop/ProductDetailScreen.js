@@ -6,6 +6,7 @@ import {
     Image,
     Button,
     StyleSheet,
+    TouchableOpacity,
 } from 'react-native';
 import { State } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
@@ -20,13 +21,24 @@ const ProductDetailScreen = props => {
     const dispatch = useDispatch();
     return (
         <ScrollView>
-            <Image style={styles.image} source={{ uri: selectedProduct.imageUrl }} />
-            <View style={styles.actions}>
-                <Button color={Colors.primary} title="Add to Cart" onPress={() => {
-                    dispatch(cartActions.addToCart(selectedProduct));
-                }} />
+            <View style={styles.imageContainer}>
+                <Image style={styles.image} source={{ uri: selectedProduct.imageUrl }} />
             </View>
-            <Text style={styles.price} >${selectedProduct.price.toFixed(2)}</Text>
+
+            <View style={styles.actions}>
+                <TouchableOpacity style={{
+                    padding: 10,
+                    borderColor: Colors.primary,
+                    borderWidth: 1,
+                    borderRadius: 10,
+                }} onPress={() => {
+                    dispatch(cartActions.addToCart(selectedProduct));
+                }}>
+                    <Text style={{ color: Colors.primary, fontSize: 20 }}>Add To Cart</Text>
+                </TouchableOpacity>
+            </View>
+            
+            <Text style={styles.price} >Price: ${selectedProduct.price.toFixed(2)}</Text>
             <Text style={styles.description} >{selectedProduct.description}</Text>
         </ScrollView>
     );
@@ -36,6 +48,7 @@ const styles = StyleSheet.create({
     image: {
         width: "100%",
         height: 300,
+        borderRadius: 20,
     },
     actions: {
         marginVertical: 10,
@@ -51,6 +64,10 @@ const styles = StyleSheet.create({
         fontSize: 14,
         textAlign: 'center',
         marginHorizontal: 20,
+        color: 'grey',
+    },
+    imageContainer: {
+        padding: 10,
     },
 });
 
