@@ -4,9 +4,13 @@ import { Title } from 'react-native-paper';
 import { AuthContext } from '../../Navigation/AuthProvider';
 import FormInput from '../../components/UI/FormInput';
 import FormButton from '../../components/UI/FormButton';
-import firestore from '@react-native-firebase/firestore'
+import firestore from '@react-native-firebase/firestore';
+import { useDispatch } from 'react-redux';
+import * as userActions from '../../store/actions/User';
 
 export default function SignupScreen({ navigation }) {
+
+    const dispatch = useDispatch();
 
     var date = new Date().getDate();
     var month = new Date().getMonth() + 1;
@@ -24,15 +28,16 @@ export default function SignupScreen({ navigation }) {
 
     function addUser() {
         const unsubscribe = firestore()
-            .collection('Users')
-            .add({
+            .collection('Users').doc(email)
+            .set({
                 name: name,
                 createdAt: currentDate,
                 email: email,
                 lastSeen: lastSeen,
-            })
+            });
 
         return () => unsubscribe();
+
     }
 
     return (

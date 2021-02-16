@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import { View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import {
-    DrawerItem
-} from '@react-navigation/drawer';
+import {DrawerItem} from '@react-navigation/drawer';
 import {
     Avatar,
     Title,
@@ -14,10 +12,11 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import Colors from '../../constants/Colors';
-import { AuthContext } from '../../Navigation/AuthProvider';
+// import {AuthContext} from '../../Navigation/AuthProvider';
 
 const DrawerContent = props => {
-    const { logout } = useContext(AuthContext);
+
+// const { logout } = useContext(AuthContext);
     return (
         <View style={{ flex: 1 }}>
 
@@ -101,7 +100,7 @@ const DrawerContent = props => {
                             color='grey'
                             size={26}
                             onPress={() => {
-                                logout()
+                                // logout()
                             }}
                         />
                     )}

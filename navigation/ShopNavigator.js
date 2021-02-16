@@ -183,64 +183,14 @@ const CustomDrawer = () =>
 
         <MainNavigator.Screen
             name="Orders"
-            component={ordersNavigator}
-            options={{
-                drawerIcon: () => <Ionicons name="filter-sharp" size={20} color={Colors.primary} />,
-                activeTintColor: Colors.primary,
-            }} />
+            component={ordersNavigator} />
 
         <MainNavigator.Screen
             name="Admin"
-            component={userNavigator}
-            options={{
-                drawerIcon: () => <Feather name="edit" size={20} color={Colors.primary} />,
-                activeTintColor: Colors.primary,
-            }} />
+            component={userNavigator} />
 
 
     </MainNavigator.Navigator>
 
-
-
-// const MainDrawer = () => {
-//     const { logout } = useContext(AuthContext);
-//     return (
-
-//         <Drawer.Navigator
-//             initialRouteName="Home"
-//             drawerContentOptions={{
-//                 activeTintColor: Colors.primary,
-//             }}
-
-//         >
-//             <Drawer.Screen
-//                 name="Shop"
-//                 component={ProdcutsNavigator}
-//                 options={{
-//                     drawerIcon: () => <Ionicons name="md-basket-outline" size={20} color={Colors.primary} />,
-//                     activeTintColor: Colors.primary,
-//                 }}
-//             />
-//             <Drawer.Screen
-//                 name="Orders"
-//                 component={ordersNavigator}
-//                 options={{
-//                     drawerIcon: () => <Ionicons name="filter-sharp" size={20} color={Colors.primary} />,
-//                     activeTintColor: Colors.primary,
-//                 }}
-//             />
-//             <Drawer.Screen
-//                 name="Admin"
-//                 component={userNavigator}
-//                 options={{
-//                     drawerIcon: () => <Feather name="edit" size={20} color={Colors.primary} />,
-//                     activeTintColor: Colors.primary,
-//                 }}
-//             />
-//         </Drawer.Navigator>
-//     );
-// }
-
-// export default MainDrawer;
 
 export default CustomDrawer;
