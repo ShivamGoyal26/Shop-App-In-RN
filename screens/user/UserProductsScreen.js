@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, TouchableOpacity } from 'react-native';
+import { FlatList, TouchableOpacity, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -12,6 +12,17 @@ const UserProductsScreen = props => {
 
     const userProducts = useSelector(state => state.products.userProducts);
     const dispatch = useDispatch();
+
+    const deleteHandler = (id) => {
+        Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
+            { text: 'No', style: 'default' },
+            {
+                text: 'Yes', style: 'destructive', onPress: () => {
+                    dispatch(productsActions.deleteProduct(id))
+                }
+            }
+        ])
+    }
 
     return <FlatList
         data={userProducts}
@@ -33,9 +44,7 @@ const UserProductsScreen = props => {
                     size={28}
                 />
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {
-                dispatch(productsActions.deleteProduct(itemData.item.id))
-            }}>
+            <TouchableOpacity onPress={() => { deleteHandler(itemData.item.id) }}>
                 <AntDesign
                     name='delete'
                     color={Colors.primary}

@@ -1,13 +1,15 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Colors from '../../constants/Colors';
+import * as productsActions from '../../store/actions/Products';
 
 const EditProductScreen = ({ navigation, route }) => {
 
     const prodId = route.params.id;
-    const editedProduct = useSelector(state => state.products.userProducts.find(prod => prod.id === prodId))
+    const editedProduct = useSelector(state => state.products.userProducts.find(prod => prod.id === prodId));
+    const dispatch = useDispatch();
 
     const [title, setTitle] = useState(editedProduct ? editedProduct.title : '');
     const [imageUrl, setImageUrl] = useState(editedProduct ? editedProduct.imageUrl : '');
@@ -15,7 +17,13 @@ const EditProductScreen = ({ navigation, route }) => {
     const [description, setDescription] = useState(editedProduct ? editedProduct.description : '');
 
     const submitHandler = () => {
-        console.log("The submit is working...");
+        if (editedProduct) {
+            dispatch(productsActions.updateProduct(prodId, title, description, imageUrl));
+
+        } else {
+            dispatch(productsActions.createProduct(title, description, imageUrl, +price));
+        }
+        navigation.pop();
     };
 
     return (
