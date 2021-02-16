@@ -6,7 +6,8 @@ import { Platform, View, TouchableOpacity } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Icon from 'react-native-vector-icons/Fontisto';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
 
 import ProductsOverviewScreen from '../screens/shop/ProductsOverviewScreen';
 import ProductDetailScreen from '../screens/shop/ProductDetailScreen';
@@ -38,6 +39,15 @@ const userNavigator = () => {
                             </TouchableOpacity>
                         </View>
                     ),
+                    headerRight: () => (
+                        <View style={{ marginRight: 10 }}>
+                            <TouchableOpacity onPress={() => {
+                                navigation.navigate("EditProductScreen");
+                            }}>
+                                <AntDesign name="pluscircleo" size={23} color='white' />
+                            </TouchableOpacity>
+                        </View>
+                    ),
                     title: "Your Products",
                     headerTintColor: 'white',
                     headerStyle: {
@@ -49,15 +59,6 @@ const userNavigator = () => {
                 name="EditProductScreen"
                 component={EditProductScreen}
                 options={({ navigation }) => ({
-                    // headerLeft: () => (
-                    //     <View style={{ marginLeft: 10 }}>
-                    //         <TouchableOpacity onPress={() => {
-                    //             navigation.toggleDrawer();
-                    //         }}>
-                    //             <Ionicons name="menu-outline" size={23} color='white' />
-                    //         </TouchableOpacity>
-                    //     </View>
-                    // ),
                     title: "Edit Product",
                     headerTintColor: 'white',
                     headerStyle: {
@@ -187,7 +188,7 @@ const MainDrawer = () => {
                     name="Admin"
                     component={userNavigator}
                     options={{
-                        drawerIcon: () => <Ionicons name="today-outline" size={20} color={Colors.primary} />,
+                        drawerIcon: () => <Feather name="edit" size={20} color={Colors.primary} />,
                         activeTintColor: Colors.primary,
                     }}
                 />

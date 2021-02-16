@@ -20,11 +20,12 @@ const UserProductsScreen = props => {
             image={itemData.item.imageUrl}
             title={itemData.item.title}
             price={itemData.item.price}
-            onSelect={() => { }}
+            onSelect={() => {
+                props.navigation.navigate("EditProductScreen", { id: itemData.item.id });
+            }}
         >
             <TouchableOpacity onPress={() => {
-                // selectItemHandler(itemData.item.id, itemData.item.title,);
-                props.navigation.navigate("EditProductScreen");
+                props.navigation.navigate("EditProductScreen", { id: itemData.item.id });
             }}>
                 <Ionicons
                     name='ios-pencil'
