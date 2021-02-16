@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Colors from '../constants/Colors';
-import { Platform, View, TouchableOpacity } from 'react-native';
+import { Platform, View, TouchableOpacity, Alert } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -42,7 +42,7 @@ const userNavigator = () => {
                     headerRight: () => (
                         <View style={{ marginRight: 10 }}>
                             <TouchableOpacity onPress={() => {
-                                navigation.navigate("EditProductScreen");
+                                navigation.navigate("EditProductScreen", {});
                             }}>
                                 <AntDesign name="pluscircleo" size={23} color='white' />
                             </TouchableOpacity>
@@ -58,8 +58,19 @@ const userNavigator = () => {
             <userStack.Screen
                 name="EditProductScreen"
                 component={EditProductScreen}
-                options={({ navigation }) => ({
-                    title: "Edit Product",
+                options={({ navigation, route }) => ({
+                    headerRight: () => (
+                        <View style={{ marginRight: 10 }}>
+                            <TouchableOpacity onPress={() => {
+
+                                // navigation.pop();
+                                Alert.alert("This Doesn't work!")
+                            }}>
+                                <AntDesign name="save" size={23} color='white' />
+                            </TouchableOpacity>
+                        </View>
+                    ),
+                    title: route.params.id ? "Edit Product" : 'Add Product',
                     headerTintColor: 'white',
                     headerStyle: {
                         backgroundColor: Colors.primary,
